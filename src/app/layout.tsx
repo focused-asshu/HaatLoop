@@ -1,10 +1,26 @@
 import type { Metadata, Viewport } from "next";
+import { Fraunces, Instrument_Sans } from "next/font/google";
+import { site } from "@/config/site";
 import "./globals.css";
 
+const display = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+  weight: "variable",
+});
+const text = Instrument_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-text",
+  weight: "variable",
+});
+
 export const metadata: Metadata = {
-  title: "HaatLoop | Early development",
-  description:
-    "HaatLoop is an early-stage idea for connecting vegetable vendors with nearby buyers of unsold edible produce in Odisha, India.",
+  metadataBase: new URL(site.url),
+  title: { default: site.title, template: "%s | HaatLoop" },
+  description: site.description,
+  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
@@ -17,7 +33,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${display.variable} ${text.variable}`}>
       <body>{children}</body>
     </html>
   );

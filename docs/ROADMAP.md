@@ -1,15 +1,17 @@
 # Roadmap
 
-## Phase 0 — repository foundation
+## Phase 0 — complete
 
-Set up the stack, static development screen, design tokens, tests, CI, and substantive documentation. See PROJECT_STATUS for measured verification. This phase implements no marketplace behavior.
+Repository foundation and quality gates retained. Phase 1A updates the inventory documentation and adds a CI timeout.
 
-## Phase 1 — not started
+## Phase 1A — current implementation
 
-Review the product hypothesis with the founder and define the next phase's explicit brief. Build on the existing routes, tokens, and quality gates. Font selection and a fuller homepage are deferred here, subject to approved scope. Never substitute illustrative content for real inventory or evidence.
+Original brand, semantic design system, shared shell and homepage. Accessible in-page navigation, journey tabs, demo search/category/sort/reset, and native FAQ. See PROJECT_STATUS for measured verification and limitations.
 
-## Later phases — provisional
+## Phase 1B — not started or approved
 
-Founder research and manual experiments should guide the MVP. Resolve listing/reservation state issues before backend work. Then consider secure identity, vendor listing management, stock-safe reservations, expiry, pickup outcomes, and reporting, with authorization and concurrency tests. Direct buyer/vendor payment remains the intended model; platform payments and delivery are not assumed scope.
+Supporting public pages may reuse the brand, shell, sections and preview after the founder supplies an approved scope. No supporting page is assumed authorized by this handoff.
 
-No dates, adoption targets, or impact results are claimed. Changes in scope require an explicit decision and updated documentation.
+## Future functional marketplace — not started
+
+Founder research and manual experiments should guide scope. Implement server authorization, stock conservation, idempotency, expiry and reporting only in a later authorized phase. Direct vendor payment and local pickup remain the hypothesis. No deployment, dates, adoption targets or impact claims are implied.

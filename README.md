@@ -2,7 +2,7 @@
 
 Fresh finds. Fairer prices. Less waste.
 
-An unvalidated idea for a hyperlocal produce-rescue marketplace in Odisha, India, being developed for Innov-a-thon 2026, NIT Rourkela. Phase 0 contains only a repository foundation and an honest early-development screen. No research or commercial outcomes are claimed.
+An unvalidated idea for a hyperlocal produce-rescue marketplace in Odisha, India, being developed for Innov-a-thon 2026, NIT Rourkela. Phase 1A adds an original brand, homepage, accessible navigation and a visibly labeled interactive demo. Supporting pages and real marketplace behavior remain deferred. No research or commercial outcomes are claimed.
 
 ## Run locally
 
@@ -48,4 +48,4 @@ npm run test:e2e
 - [Verified project status](docs/PROJECT_STATUS.md)
 - [Empty research templates](docs/RESEARCH.md)
 
-Do not add invented listings, customer evidence, impact figures, or fake functionality. Phase 1 has not started.
+Only the explicitly labeled demo fixtures may contain invented produce examples. Never fabricate customer evidence, impact figures or working marketplace behavior. Phase 1B is not started or approved.

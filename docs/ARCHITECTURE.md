@@ -1,22 +1,22 @@
 # Architecture
 
-Next.js App Router, React, strict TypeScript, and Tailwind CSS. The current app is static presentation with no backend, authentication, storage, or external data calls. Server components are the default; there is no need for client component state in Phase 0.
+Next.js App Router, React, strict TypeScript, and Tailwind CSS. The Phase 1A homepage is prerendered with no backend, authentication, persistence or external data calls. Server components compose the page. Only mobile navigation, journey tabs and demo discovery need client state.
 
 ## Responsibilities
 
-| Directory               | Responsibility                                                          |
-| ----------------------- | ----------------------------------------------------------------------- |
-| `src/app`               | Routes, root layout, metadata, not-found handling, global design tokens |
-| `src/components/ui`     | Future reusable presentation primitives                                 |
-| `src/components/layout` | Future shared layout components                                         |
-| `src/features`          | Future domain modules and feature-specific logic                        |
-| `src/lib`               | Shared logic and utilities; exported INR formatter                      |
-| `src/config`            | Future validated configuration                                          |
-| `src/types`             | Future genuinely shared types                                           |
-| `tests/unit`            | Utility and foundation-page tests                                       |
-| `tests/e2e`             | Chromium production smoke test                                          |
-| `public`                | Future static assets; currently empty                                   |
-| `docs`                  | Hypotheses, constraints, decisions, verification                        |
+| Directory               | Responsibility                                                |
+| ----------------------- | ------------------------------------------------------------- |
+| `src/app`               | Root route, layout, metadata endpoints and not-found handling |
+| `src/components/ui`     | Reserved for future reusable presentation primitives          |
+| `src/components/layout` | Header, mobile navigation and footer                          |
+| `src/features`          | Demo marketplace preview and pure fixture filtering           |
+| `src/lib`               | Shared logic and utilities; exported INR formatter            |
+| `src/config`            | Site metadata and anchor navigation                           |
+| `src/types`             | Future genuinely shared types                                 |
+| `tests/unit`            | Utility, fixture, navigation and component interaction tests  |
+| `tests/e2e`             | Chromium behavior, responsive and axe tests                   |
+| `public`                | Future static assets; currently empty                         |
+| `docs`                  | Hypotheses, constraints, decisions, verification              |
 
 Empty directories are tracked with `.gitkeep`; they contain no speculative implementations. Business logic never belongs in components. Avoid shared abstractions until actual reuse is established.
 
@@ -25,25 +25,38 @@ Empty directories are tracked with `.gitkeep`; they contain no speculative imple
 | Entity              | Proposed key fields                                                                                                                                          |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Vendor              | id, owner_user_id, display_name, pickup_location, pickup_instructions, created_at                                                                            |
-| Listing             | id, vendor_id, produce_name, unit, total_quantity, available_quantity, price_paise_per_unit, pickup_start, pickup_end, status, version, created_at           |
+| Listing             | id, vendor_id, produce_name, unit, quantity_total, price_paise_per_unit, pickup_start, pickup_end, status, version, created_at                               |
 | Buyer               | id, user_id, minimal display/contact details only if necessary, created_at                                                                                   |
 | Reservation         | id, listing_id, buyer_id, quantity, unit_price_paise_snapshot, status, expires_at, idempotency_key, created_at, completed_at                                 |
 | Transaction outcome | id, reservation_id (unique), recorded_by, pickup_outcome, recorded_at; external payment remains unverified unless a future evidence policy defines otherwise |
 
 Amounts use integer paise. Quantity precision, permitted units, location precision, retention periods, and outcome taxonomy require later decisions. Transaction outcome is a record of an observed/attested result, not a payment processor record.
 
-## Required state machines
+## Inventory model — supersedes Phase 0, documentation only
 
-- Listing: draft → active → sold_out | expired | withdrawn
-- Reservation: reserved → completed | cancelled | expired | no_show
+Stored listing statuses: **draft, active, withdrawn**. Expired is derived from the pickup-window end time. sold_out is derived from available = 0; it is not a stored terminal state and does not necessarily mean that every unit has been collected.
 
-Terminal states cannot transition further.
+- A listing stores quantity_total.
+- quantity_held is the sum of quantities in active reserved reservations.
+- quantity_sold is the sum of completed reservation quantities.
+- available = quantity_total − quantity_held − quantity_sold.
+- Cancelled, expired and no_show reservations release their hold. This restores calculated availability, but does not reopen a withdrawn listing or extend its pickup window.
+- Reservation: reserved → completed | cancelled | expired | no_show. All destination states are terminal.
+- Completion atomically moves quantity from held to sold, leaving availability unchanged. Completion is idempotent and cannot occur twice.
+- Invariant: 0 ≤ held + sold ≤ total at all times. All quantity changes are atomic; all transitions are validated and authorized server-side.
 
-### Open model issues
+Expiry workers and completion must share guarded transactions. A hold is released once, even on retries; a stale client cannot complete a released reservation. Listing withdrawal, draft cleanup, fractional unit precision, and the exact boundary between expired and no_show still need operating policies. This phase implements no inventory engine.
 
-If `sold_out` means all stock is reserved, a later cancellation or expiry can restore stock, but the terminal listing cannot become active again. Before implementation, decide whether sold_out is only final after collection, whether restored stock needs a new listing, or whether the model needs an explicitly approved revision. Do not silently add a transition.
+## Phase 1A presentation boundaries
 
-The model has no draft deletion/withdrawal transition. Draft cleanup needs a policy. Expired versus no_show requires a precise deadline and actor policy, including races between expiry and completion. These questions are unresolved; the specified states remain unchanged.
+- src/components/brand: original SVG mark, basket/awning and seven produce illustrations.
+- src/components/layout: header, mobile menu and footer; nav destinations are centralized in src/config/site.ts.
+- src/components/sections: meaningful homepage sections; FAQ uses native details and needs no custom client component.
+- src/features/marketplace-preview: typed invented fixtures, pure filter/search/sort function, and interactive presentation. Values never represent availability or observed prices. Same-day HH:mm values sort lexically; this is deliberately not a production date/time model.
+- src/styles: foundation tokens, shell, hero, journeys, preview, content and responsive styles, imported by the small app stylesheet.
+- src/app: only the root page and existing not-found UI; icon.svg, robots.ts and sitemap.ts are metadata assets/endpoints, not new product pages.
+
+All eight examples show Demo and Demo stall. Prices are integer paise per stated unit; quantities, distances, condition notes and pickup times are invented. Search matches name/category; filters intersect; sorting copies the list without mutating fixtures. No backend adapter or fake transaction flow is introduced. Phase 1B can replace or reuse presentation after its scope is approved.
 
 ## Future Supabase strategy — not implemented
 
@@ -62,4 +75,4 @@ Required later controls:
 - Safe image uploads: ownership checks, size/type limits, file-content validation, safe object names, and controlled serving/access policies.
 - Collect minimal personal data; decide consent, retention, deletion, contact visibility, and location precision before collection.
 
-No Supabase dependency, schema, credentials, auth flow, or backend code is included in Phase 0.
+No Supabase dependency, schema, credentials, auth flow, or backend code is included in Phase 1A.

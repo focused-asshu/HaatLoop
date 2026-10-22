@@ -1,18 +1,16 @@
 import { render, screen, within } from "@testing-library/react";
 import { expect, it } from "vitest";
 import Home from "@/app/page";
-
-it("explains the idea and its early status without offering marketplace actions", () => {
+it("presents the concept and demo without transactional actions", () => {
   render(<Home />);
   const main = within(screen.getByRole("main"));
+  expect(main.getByRole("heading", { level: 1 })).toHaveTextContent(
+    "Good food deserves another chance.",
+  );
+  expect(main.getByText("Preview with demo data — not live")).toBeVisible();
+  expect(main.getAllByText("Demo", { exact: true })).toHaveLength(8);
   expect(
-    main.getByRole("heading", { name: "HaatLoop", level: 1 }),
-  ).toBeVisible();
-  expect(
-    main.getByText("Fresh finds. Fairer prices. Less waste."),
-  ).toBeVisible();
-  expect(main.getByText("Early development")).toBeVisible();
-  expect(main.getByText(/idea is unvalidated/)).toBeVisible();
-  expect(main.queryByRole("button")).not.toBeInTheDocument();
-  expect(main.queryByRole("link")).not.toBeInTheDocument();
+    main.queryByRole("button", { name: /reserve|buy|login/i }),
+  ).not.toBeInTheDocument();
+  expect(main.getByText(/haven’t conducted customer research/)).toBeVisible();
 });

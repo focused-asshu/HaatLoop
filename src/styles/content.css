@@ -1,0 +1,148 @@
+.value-section {
+  padding-block: 5rem;
+}
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+.value-section .lead {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+.value-copy > div + div {
+  border-top: 1px solid var(--background);
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+.value-copy .eyebrow {
+  display: block;
+  color: var(--secondary);
+}
+.value-copy h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+.safety-grid,
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+}
+.safety-grid h2 {
+  font-size: clamp(2.2rem, 3.7vw, 3.5rem);
+}
+.safety-grid .badge {
+  margin-top: 2rem;
+}
+.safety-note {
+  max-width: 44ch;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.principles {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.principles li {
+  display: flex;
+  gap: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-block: 1.5rem;
+}
+.principles li > span {
+  color: var(--primary);
+  font-size: 0.85rem;
+}
+.principles h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+.principles p {
+  font-size: 0.95rem;
+}
+.faq-grid {
+  border-top: 1px solid var(--border);
+  grid-template-columns: 0.75fr 1.25fr;
+}
+.faq-grid h2 {
+  margin-bottom: 1.5rem;
+}
+.faq-grid > div > p:last-child {
+  color: var(--muted);
+}
+.faq-list details {
+  border-bottom: 1px solid var(--border);
+}
+.faq-list details:first-child {
+  border-top: 1px solid var(--border);
+}
+.faq-list summary {
+  min-height: 64px;
+  padding-block: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-weight: 600;
+  list-style: none;
+}
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+.faq-list summary span {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.faq-list details[open] summary span {
+  transform: rotate(45deg);
+}
+.faq-list details p {
+  padding: 0 2rem 1.5rem 0;
+  max-width: 65ch;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.final-cta {
+  background: var(--secondary);
+  padding-block: 4.5rem;
+  text-align: center;
+}
+.final-cta h2 {
+  margin-block: 1.5rem 2rem;
+  color: var(--primary);
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+}
+.final-cta .actions {
+  justify-content: center;
+}
+.site-footer {
+  background: var(--primary);
+  color: var(--background);
+  padding-block: 3rem 1.5rem;
+  --focus-ring: var(--secondary);
+}
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.footer-top p {
+  font-size: 0.85rem;
+  margin-top: 0.8rem;
+}
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+}
+.footer-bottom {
+  border-top: 1px solid var(--background);
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.75rem;
+}

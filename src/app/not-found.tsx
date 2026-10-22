@@ -11,7 +11,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="mt-8 inline-block font-semibold text-primary underline underline-offset-4"
+          className="mt-8 inline-block min-h-11 py-3 font-semibold text-primary underline underline-offset-4"
         >
           Return to HaatLoop
         </Link>

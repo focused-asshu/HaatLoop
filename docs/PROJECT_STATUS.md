@@ -1,77 +1,144 @@
-# Project status
+# Project status — Phase 1A
 
-Phase 0 is complete. Phase 1 has not started. Verification date: 2026-10-22 (Asia/Calcutta).
+Verified locally on 2026-10-22 (Asia/Calcutta). Phase 1A implementation is delivered with a disclosed JavaScript-budget exception and the pre-existing development-tooling advisory. Phase 1B has not started and is not approved by this report. No live deployment was performed or claimed.
 
-## Repository inspection
+## Starting point and scope
 
-The original clean repository contained only `.gitattributes`, with commit `a04df8a` on `main` tracking an existing `origin/main`. There was no app, package manager, configuration, or repository guidance. History and remote configuration were preserved. The existing auto-detection rule was extended with `eol=lf` so fresh Windows checkouts match EditorConfig/Prettier instead of introducing CRLF formatting failures. No remote was created and nothing was pushed. The foundation is added as a single local commit after this report is finalized.
+Started at 038ab5475dbd6b73f2c234047bbb5368e35d9737, on main, with a clean working tree tracking origin/main. Retained Next 16.4.2, React 19.3.1, Tailwind 4.3.3, TypeScript 6.0.3, Node 24.22.1, npm 11.19.1, strict typing, INR utility, test tooling and custom 404. History and remotes were not changed. The founder clarified that Phase 1A should be completed fully, with the master brief informing design basics; extra public pages remain deferred.
 
-## Implemented
+Baseline npm ci and npm run check passed after stopping the previous dev server, which held a Windows native-library lock. An npm ls attempt during reinstall saw a transient incomplete tree; subsequent final npm ls is clean. Existing research templates are byte-for-byte unchanged.
 
-App Router foundation and custom not-found route; metadata, viewport, language, main landmarks, semantic design tokens, system fonts, reduced-motion support, strict TypeScript with unchecked-index protection, ESLint, Prettier/Tailwind formatting, EditorConfig, environment ignore rules, all required scripts, CI, unit/page tests, and Chromium smoke tests. Required structure and documentation are present. No Phase 1 or backend behavior is implemented. Next dev generated `AGENTS.md`; it was inspected and retained as framework guidance.
+## Implemented routes and behavior
 
-## Exact toolchain
+- /: complete brand/homepage, desktop anchor navigation, accessible mobile menu, buyer/vendor journey tabs, eight labeled demo listings, category/search/pickup-end sorting, empty/reset state, principles, FAQ and footer.
+- Existing not-found UI: real HTTP 404, functional home link with a 44px minimum target.
+- /icon.svg, /robots.txt, /sitemap.xml: metadata assets/endpoints; canonical https://haatloop.vercel.app, title template and description. No invented OG image or structured claims.
 
-| Tool                         | Installed version |
-| ---------------------------- | ----------------- |
-| Node                         | 24.22.1           |
-| npm                          | 11.19.1           |
-| Next.js / eslint-config-next | 16.4.2            |
-| React / React DOM            | 19.3.1            |
-| Tailwind / Tailwind PostCSS  | 4.3.3             |
-| TypeScript                   | 6.0.3             |
-| ESLint                       | 9.39.5            |
-| Prettier / Tailwind plugin   | 3.9.10 / 0.8.1    |
-| Vitest                       | 5.0.5             |
-| Playwright                   | 1.64.1            |
+No auth, live stock, real reservation, payment processing, geolocation, personal-data collection, analytics, waitlist, database, or supporting product routes. Demo times are same-day HH:mm examples without a real date; distances and prices are invented, not local observations. All cards display Demo and Demo stall. No reserve/buy action exists.
 
-The machine's original Node 20.18.0/npm 10.8.2 remain installed. Verification used the checksum-verified portable runtime at `%LOCALAPPDATA%\HaatLoop\runtime\node-v24.22.1-win-x64`. On this machine, prepend that directory to PATH and invoke its `npm.cmd` explicitly in PowerShell; an older PowerShell npm shim otherwise selects the old runtime. Normal development uses Node from `.nvmrc`.
+## Phase 0 repairs
+
+CI already had npm caching and Chromium system-dependency installation. Added a 15-minute timeout, then parsed/asserted the local YAML and step order. Hosted CI was NOT RUN. Inventory documentation now separates held and sold quantity, derives available/sold_out/expiry, and preserves terminal reservation transitions. No inventory code was implemented.
+
+Known audit: GHSA-vfj7-8cjw-p6xm (high) in braces → micromatch → fast-glob → Next ESLint tooling. Upstream was checked once; braces latest remains 3.0.3. npm proposes an incompatible Next lint-config downgrade. No force, downgrade or peer override was applied. Exposure is development tooling processing malicious glob patterns, not a production dependency. Keep untrusted patterns out of tooling; revisit the upstream fix later. ESLint 9 remains upstream-deprecated but peer-compatible with the installed Next lint stack.
 
 ## Executed verification
 
-Commands below ran with Node 24.22.1. The quality gate invokes the exact individual npm commands listed, sequentially and with failure propagation.
+Commands use the portable Node 24 runtime documented in README/DECISIONS, not the machine-wide Node 20 shim. The check script invokes each listed quality command sequentially and fails on the first error.
 
-| Command / check                                   | Result  | Evidence                                                                                                      |
-| ------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| `npm ci`                                          | PASS    | Clean install: 447 packages added; lockfile accepted; audit caveat below                                      |
-| `npm run typecheck`                               | PASS    | Next route types generated; TypeScript exited 0                                                               |
-| `npm run lint`                                    | PASS    | ESLint exited 0 with zero warnings                                                                            |
-| `npm run format:check`                            | PASS    | All matched files use Prettier style                                                                          |
-| `npm run test`                                    | PASS    | 2 files, 6 tests passed                                                                                       |
-| `npm run build`                                   | PASS    | Production compilation/typecheck/static generation completed; `/` and `/_not-found` prerendered               |
-| `npm run test:e2e`                                | PASS    | 2 Chromium runs passed: 360×800 and 1280×900; home title/main, no overflow, HTTP 404 and keyboard return link |
-| `npm run check`                                   | PASS    | Full typecheck → lint → formatting → tests → build chain exited 0                                             |
-| `npm run format`                                  | PASS    | Formatting applied without suppressing lint rules                                                             |
-| `npx playwright install chromium`                 | PASS    | Chromium and required Playwright support binaries installed                                                   |
-| `npm run dev -- --hostname 127.0.0.1 --port 3000` | PASS    | Ready in 843ms; browser verified HTTP 200, title/main, 360px layout, custom HTTP 404, and no page errors      |
-| Visual inspection                                 | PASS    | Both production screenshots inspected; readable wrapping, no clipping or horizontal overflow                  |
-| CI YAML validation                                | PASS    | Parsed with js-yaml; asserted push/PR triggers, Node pin, ordered steps, and read-only contents permission    |
-| Hosted GitHub Actions execution                   | NOT RUN | No push requested or performed; local equivalent commands passed                                              |
-| `npm ls --depth=0`                                | PASS    | Installed direct dependencies resolve without invalid peers                                                   |
-| `npm audit --omit=dev`                            | PASS    | 0 production vulnerabilities reported                                                                         |
-| `npm audit --json`                                | FAIL    | 5 high findings in one development-only lint dependency chain; details below                                  |
+| Exact command / check                                                                                                                        | Result  | Evidence                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------- |
+| npm ci                                                                                                                                       | PASS    | Final lockfile installed 449 packages; advisory remains disclosed                                               |
+| npm run typecheck                                                                                                                            | PASS    | Generated route types and strict tsc                                                                            |
+| npm run lint                                                                                                                                 | PASS    | Zero errors/warnings; no suppressions                                                                           |
+| npm run format:check                                                                                                                         | PASS    | Prettier/Tailwind formatting checked                                                                            |
+| npm run test                                                                                                                                 | PASS    | 14 tests in 4 files: utility, fixture/filter integrity, navigation, menu focus/Escape, journey keys, FAQ, reset |
+| npm run build                                                                                                                                | PASS    | Root, not-found and metadata assets prerender successfully                                                      |
+| npm run test:e2e                                                                                                                             | PASS    | 10 tests across Chromium 360px/1280px projects                                                                  |
+| npm run check                                                                                                                                | PASS    | Complete typecheck → lint → format:check → test → build chain                                                   |
+| npm audit --omit=dev                                                                                                                         | PASS    | Zero production vulnerabilities                                                                                 |
+| npm audit                                                                                                                                    | FAIL    | Five high findings in the single known dev-tooling dependency chain                                             |
+| npm ls --depth=0                                                                                                                             | PASS    | Direct dependencies resolve without invalid peers                                                               |
+| node scripts/verify-visuals.mjs                                                                                                              | PASS    | Screenshots, requested-script gzip sizes, SVG weights, no-JS content and axe scans                              |
+| npx --yes lighthouse http://127.0.0.1:3100 --port=9222 --hostname=127.0.0.1 --output=json --output-path=test-results/lighthouse.json --quiet | PASS    | Local simulated mobile run via Playwright-launched Chromium debugging port                                      |
+| CI YAML review/assertions                                                                                                                    | PASS    | push/PR, Node pin, npm cache, timeout and Chromium --with-deps verified                                         |
+| Hosted CI / Vercel deployment                                                                                                                | NOT RUN | No push or deployment performed                                                                                 |
 
-### Resolved setup failures
+The initial Lighthouse Chrome launcher failed with spawn UNKNOWN; connecting to Chromium launched by Playwright resolved it. Development test iterations caught and fixed plain home anchors, a test helper type error, formatting changes, and the screenshot runner’s required explicit browser context. The final menu regression test also asserts the desktop CTA is hidden and the open menu does not overflow.
 
-Staged-file review and credential-pattern scan: PASS. Intended source/config/docs only; no private environment files, detected credentials, build output, dependency directories, or deletions.
+## Accessibility and responsive evidence
 
-The first install selected the old PowerShell npm shim and failed the Node engine guard. Explicit portable `npm.cmd` resolved this. Initial newest-major dependency selection produced incompatible ESLint/TypeScript peers; compatible releases are pinned and documented in DECISIONS. Initial lint found anonymous default exports in two configs and a plain home anchor; named config exports and Next Link fixed them. An initial Vitest config-module warning was fixed with `type: module`. Final required checks pass with no rule suppressions.
+Playwright verifies 320, 360, 390, 430, 768, 1024, 1280, 1440 and 1920px without horizontal overflow. Tests cover anchors, metadata, custom 404, menu entry/Escape/return focus, keyboard tabs, native FAQ Enter/Space, filtering/search/sort/reset, reduced motion and console/page errors. Axe scans default and interactive states with no serious/critical findings. Separate final scans at 360/768/1280 returned zero violations across the selected WCAG A/AA tags.
 
-## Issues and unverified items
+Manual keyboard reasoning: the menu is non-modal and does not trap Tab; focus moves into it on open and returns on Escape/navigation; tabbing away dismisses it. Tabs use a single tab stop with arrows/Home/End. Search/select/chips use native controls. FAQ uses native details/summary. The screenshot audit confirmed readable wrapping, focus targets and section composition. This is not a claim of a full screen-reader or WCAG conformance audit.
 
-- The product hypothesis, vendor preference versus WhatsApp, incremental revenue, buyer pickup economics, and food-safety/operational policies remain unvalidated. No research has been performed.
-- Listing stock restoration after a reservation is released conflicts with a terminal sold_out state if sold_out means fully reserved. Draft cleanup and expired/no_show semantics also need a decision before backend implementation. The requested state machines are preserved exactly.
-- The npm audit advisory [GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm) affects `braces` through `micromatch` → `fast-glob` → `@next/eslint-plugin-next` → `eslint-config-next`. The latest available braces is 3.0.3, still affected. npm proposes downgrading the Next lint config to 14.2.35; that incompatible change was not applied. This is development tooling exposure to malicious glob patterns, not an installed production dependency. Recheck upstream before broader use and avoid untrusted lint/glob inputs.
-- ESLint 9 is deprecated upstream but remains required by Next's current React/accessibility plugin peers. TypeScript 6.0.3 is the latest supported by the current lint parser. Review both pins when upstream support changes.
-- npm reports an unapproved optional `unrs-resolver` postinstall script; standard platform packages resolved correctly and required checks passed without approving extra scripts.
-- Hosted CI, other browsers, deployment, full accessibility auditing, real users, backend security, and product behavior are NOT RUN / not implemented. Browser tests cover Chromium only, as requested.
+Used text contrast ranges from 5.38:1 to 14.32:1. Used boundary contrast ranges from 3.51:1 to 4.26:1; focus pairs exceed 3:1. Exact pairs are in DESIGN_SYSTEM and verification.json. A no-JavaScript browser check confirmed the headline and all eight cards remain visible; filters require JavaScript.
 
-## Contrast
+## Measured performance — target exception
 
-Calculated WCAG ratios: green/ivory **9.12:1**; charcoal/ivory **13.02:1**; charcoal/white **14.32:1**; charcoal/marigold **8.21:1**. All screen text pairs meet AA for normal text. Border/white is 4.26:1 and border/ivory is 3.87:1. See DESIGN_SYSTEM for tokens and calculation method.
+Next 16.4.2's build output does not print a First Load JS column, so that build-output metric is NOT AVAILABLE, not invented. The repeatable browser measurement captures actual initial script responses from the local production page, gzips each decoded body and sums their sizes. It is a comparable estimate, not a claim of actual HTTP wire compression.
 
-## Acceptance and handoff
+- External initial JavaScript: **1,42,080 bytes gzip (138.75 KiB)**, 4,73,797 bytes uncompressed.
+- Inline script/serialized payload: 21,135 bytes raw; 5,097 bytes when independently gzipped. Inline payload normally compresses as part of HTML; do not treat this isolated estimate as measured wire bytes.
+- The ≲120 kB total JavaScript target is **NOT MET**. The original measurement was 142,790 external gzip bytes; a static SVG sprite and plain in-page logo anchors reduced it to 142,080 bytes. The two largest shared framework chunks account for 118,336 gzip bytes. No animation library or runtime dependency was added. Further reduction requires deliberate framework/client-boundary work; it is not silently waived or pursued through a major rewrite.
+- Inline SVG on the default page: 3067 bytes; shared produce sprite: 2697 bytes. No raster image is served by the app. Compressed JPEG screenshots exist only as documentation artifacts.
+- Lighthouse 13.5.0, simulated mobile, final local run: performance 96, accessibility 100, best practices 100, SEO 100. FCP 0.95s; LCP 2.48s; TBT 155ms; CLS 0. No run warnings. These are one machine’s lab numbers, not field Core Web Vitals or the live Vercel site. An earlier run was 97 performance; final measured run is reported rather than the best run.
 
-All six Phase 0 acceptance criteria are met locally: working dev/production app; operational strict checks/tests; end-to-end quality gate and validated workflow; matching structure/docs with exact states; no fabricated data or functionality; and an extensible foundation. Hosted CI remains unexecuted and dependency advisories remain disclosed limitations, not claimed passes.
+## Screenshots actually inspected
 
-Phase 1 can begin on this structure once explicitly requested. Build on `src/app`, the global tokens, the `src/lib` rule, the test suite, and the docs. Keep system fonts until a deliberate font decision; never introduce invented evidence or live-looking fake inventory. Resolve domain-state questions before implementing reservation behavior.
+Saved under docs/screenshots: home-360.jpg, home-768.jpg, home-1280.jpg, hero-360.jpg, hero-768.jpg, hero-1280.jpg, mobile-menu.jpg and preview-filtered.jpg. Full-page captures use 900px viewport height; the menu uses 360×800. The three hero captures provide readable detail alongside tall full-page shots. Total saved size is modest (under 2 MB).
+
+Fixed visible defects: mobile illustration caption overlap, produce hidden too far behind the basket, and a CSS-specificity regression exposing the desktop CTA on mobile. Re-captured and inspected after repair. Screenshot generation resets navigation between widths so axe’s focus probing does not leave a skip link visible in the default-page capture. No clipping/overflow defect remains observed in the checked layouts. Long mobile scrolling is intentional because all eight examples are shown; future pagination would need a separate product decision.
+
+## Acceptance verdict and handoff
+
+Met locally: original identity and fonts/tokens; complete homepage and honest demo; working navigation/menu/tabs/filters/FAQ; original SVGs; strict TypeScript and preserved architecture; passing required engineering tests except the disclosed full audit; inspected screenshots and responsive/a11y evidence. **Unmet target: initial JavaScript size.** Unverified: hosted CI, live deployment, real-device/assistive-technology coverage and all product hypotheses. This report does not claim an unconditional all-criteria PASS.
+
+Phase 1B may reuse the Logo, shell, section components, tokens, fixture presentation and tests only after founder approval. Keep demo labels and no-transaction constraints, resolve remaining operational policies before backend development, and retain the documented quantity invariants. No Phase 1B or later approval is granted here.
+
+## File change inventory
+
+Modified tracked files:
+
+- .github/workflows/ci.yml
+- README.md
+- docs/ARCHITECTURE.md
+- docs/DECISIONS.md
+- docs/DESIGN_SYSTEM.md
+- docs/PRODUCT.md
+- docs/PROJECT_STATUS.md
+- docs/ROADMAP.md
+- package-lock.json
+- package.json
+- src/app/globals.css
+- src/app/layout.tsx
+- src/app/not-found.tsx
+- src/app/page.tsx
+- tests/e2e/smoke.spec.ts
+- tests/unit/home.test.tsx
+
+Added files:
+
+- docs/lighthouse-summary.json
+- docs/screenshots/hero-1280.jpg
+- docs/screenshots/hero-360.jpg
+- docs/screenshots/hero-768.jpg
+- docs/screenshots/home-1280.jpg
+- docs/screenshots/home-360.jpg
+- docs/screenshots/home-768.jpg
+- docs/screenshots/mobile-menu.jpg
+- docs/screenshots/preview-filtered.jpg
+- docs/verification.json
+- public/produce.svg
+- scripts/verify-visuals.mjs
+- src/app/icon.svg
+- src/app/robots.ts
+- src/app/sitemap.ts
+- src/components/brand/logo.tsx
+- src/components/brand/market-art.tsx
+- src/components/brand/produce.tsx
+- src/components/layout/mobile-navigation.tsx
+- src/components/layout/site-footer.tsx
+- src/components/layout/site-header.tsx
+- src/components/sections/faq.tsx
+- src/components/sections/final-cta.tsx
+- src/components/sections/hero.tsx
+- src/components/sections/journeys.tsx
+- src/components/sections/story.tsx
+- src/components/sections/value-safety.tsx
+- src/config/site.ts
+- src/features/marketplace-preview/data.ts
+- src/features/marketplace-preview/filter.ts
+- src/features/marketplace-preview/preview.tsx
+- src/features/marketplace-preview/types.ts
+- src/styles/content.css
+- src/styles/foundation.css
+- src/styles/hero.css
+- src/styles/journey.css
+- src/styles/preview.css
+- src/styles/responsive.css
+- src/styles/shell.css
+- tests/unit/interactions.test.tsx
+- tests/unit/preview.test.ts
+
+No files deleted. Changes remain local and uncommitted for review.

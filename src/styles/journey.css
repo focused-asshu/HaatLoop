@@ -1,0 +1,122 @@
+.dark-section {
+  background: var(--primary);
+  color: var(--background);
+  --focus-ring: var(--secondary);
+}
+.dark-section h2 em {
+  color: var(--secondary);
+}
+.story {
+  padding: 4rem 0 3rem;
+  position: relative;
+}
+.scalloped::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  height: 14px;
+  inset-inline: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='14'%3E%3Cpath d='M0 14Q0 0 20 0T40 14' fill='%23164b35'/%3E%3C/svg%3E")
+    repeat-x;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 5rem;
+}
+.story h2 {
+  font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+}
+.hypothesis {
+  font-size: 0.83rem;
+  margin-top: 1.2rem;
+  max-width: 52ch;
+}
+.gap-diagram {
+  grid-column: 1/-1;
+  border-top: 1px solid var(--background);
+  margin-top: 1rem;
+  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+.gap-diagram > span:last-child {
+  text-align: right;
+}
+.gap-diagram strong {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.gap-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: var(--secondary);
+}
+.journey-intro {
+  max-width: 360px;
+}
+.journey-intro > p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.tabs {
+  display: flex;
+  border: 1px solid var(--primary);
+  padding: 4px;
+  width: fit-content;
+}
+.tabs button {
+  border: none;
+  min-height: 44px;
+  padding: 0.65rem 1.2rem;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.tabs [aria-selected="true"] {
+  background: var(--primary);
+  color: var(--background);
+}
+.journey-panel ol {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+.journey-panel li {
+  padding: 2rem 2rem 0 0;
+}
+.journey-panel li + li {
+  padding-left: 2rem;
+  border-left: 1px solid var(--border);
+}
+.step-number {
+  display: block;
+  color: var(--primary);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.journey-panel h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.journey-panel p {
+  font-size: 0.95rem;
+  max-width: 34ch;
+}
+.journey-vendor {
+  background: var(--elevated);
+  padding-inline: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 4px solid var(--primary);
+}

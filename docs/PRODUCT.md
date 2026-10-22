@@ -12,7 +12,7 @@ A vendor lists edible surplus with quantity, unit, price, and pickup window. A b
 
 ## Scope
 
-Future MVP scope: vendor-controlled listings, nearby discovery, stock-safe reservations, pickup coordination, and recorded outcomes. Phase 0 implements none of these; it provides tooling and a foundation screen only.
+Future MVP scope: vendor-controlled listings, nearby discovery, stock-safe reservations, pickup coordination, and recorded outcomes. Phase 1A implements none of these live workflows; it provides a public concept homepage and explicitly labeled interactive demo fixtures only.
 
 Out of scope: platform payments, delivery, AI/speech, realtime features, fake dashboards, fabricated transactions/reviews/testimonials, and impact claims. Auth, geolocation, marketplace flows, and backend integration are deferred beyond Phase 0.
 

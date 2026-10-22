@@ -1,0 +1,80 @@
+{
+  "measuredAt": "2026-10-22T09:44:29.129Z",
+  "environment": "Local production build, Windows, Chromium; not deployed or field data",
+  "javascript": {
+    "raw": 473797,
+    "gzip": 142080,
+    "inlineRaw": 21135,
+    "inlineGzip": 5097,
+    "chunks": {
+      "/_next/static/chunks/1x6obpmlu1_c2.js": {
+        "raw": 5361,
+        "gzip": 1975
+      },
+      "/_next/static/chunks/2r4s4h5xul1n-.js": {
+        "raw": 28739,
+        "gzip": 7624
+      },
+      "/_next/static/chunks/turbopack-3-ry682tkyiqk.js": {
+        "raw": 10030,
+        "gzip": 3940
+      },
+      "/_next/static/chunks/2e268anpfvdoc.js": {
+        "raw": 168355,
+        "gzip": 46367
+      },
+      "/_next/static/chunks/0umf92h1sb77c.js": {
+        "raw": 13822,
+        "gzip": 3514
+      },
+      "/_next/static/chunks/2n5qeheznvl4u.js": {
+        "raw": 7820,
+        "gzip": 3307
+      },
+      "/_next/static/chunks/2942-phx7_m4k.js": {
+        "raw": 9850,
+        "gzip": 3384
+      },
+      "/_next/static/chunks/2khxl0v1q4i6n.js": {
+        "raw": 229820,
+        "gzip": 71969
+      }
+    }
+  },
+  "inlineSvgBytes": 3067,
+  "spriteBytes": 2697,
+  "axeResults": [
+    {
+      "width": 360,
+      "violations": []
+    },
+    {
+      "width": 768,
+      "violations": []
+    },
+    {
+      "width": 1280,
+      "violations": []
+    }
+  ],
+  "noJsContent": true,
+  "contrast": {
+    "charcoal/ivory": 13.02,
+    "charcoal/white": 14.32,
+    "charcoal/elevated": 11.79,
+    "charcoal/yellow": 8.21,
+    "green/ivory": 9.12,
+    "green/white": 10.04,
+    "green/yellow": 5.75,
+    "muted/ivory": 5.94,
+    "muted/white": 6.53,
+    "muted/elevated": 5.38,
+    "ivory/green": 9.12,
+    "yellow/green": 5.75,
+    "ivory/hover": 11.36,
+    "border/ivory": 3.87,
+    "border/white": 4.26,
+    "border/elevated": 3.51,
+    "green/elevated": 8.26
+  }
+}

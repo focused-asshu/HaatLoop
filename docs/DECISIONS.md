@@ -37,3 +37,19 @@ Accepted: one static root page, custom not-found, exported integer-paise utility
 - [Playwright web server](https://playwright.dev/docs/test-webserver): managed production server for smoke tests.
 
 Exact dependency versions are in `package.json` and `package-lock.json`; verification runtime and results are in PROJECT_STATUS.
+
+## ADR 007 — Phase 1A scope (2026-10-22)
+
+The founder clarified that Phase 1A should be completed in full, using the master Phase 1 brief for basic direction. Only the homepage and existing not-found product route are in scope. Supporting pages, extra routes, Motion, auth and backend behavior remain deferred. The alternative was the full master brief; its extra routes would exceed the narrower approved phase.
+
+## ADR 008 — inventory availability (2026-10-22)
+
+Supersedes ADR 005: store draft/active/withdrawn only; derive sold_out from zero availability and expiry from pickup-window end. Separate held from completed quantities. Cancelled/expired/no_show holds release stock. Preserve the reservation terminal transitions. This avoids making temporary reservation exhaustion irreversible. See ARCHITECTURE for invariants and remaining policies. Documentation only.
+
+## ADR 009 — brand, fonts and interaction (2026-10-22)
+
+Fraunces and Instrument Sans exist in the installed next/font/google catalog. Use variable normal styles, latin subset, display swap, and Next fallback adjustment/self-hosting. Supersedes ADR 004 for Phase 1A. Odia will use Noto Sans Oriya only when actual Odia content exists. Original inline geometric SVGs avoid stock-image licensing, raster downloads and layout uncertainty. No motion library or reveal hook: all content is immediately visible, with CSS hover/press feedback only. Native details avoids extra accordion JavaScript.
+
+## ADR 010 — tools and remaining audit (2026-10-22)
+
+No runtime dependencies added. Add only @axe-core/playwright for real browser accessibility scans and @testing-library/user-event for keyboard/focus tests. CI already caches npm; add a 15-minute job timeout and retain Chromium --with-deps installation. Hosted CI is not inferred from local results. The known GHSA-vfj7-8cjw-p6xm chain was rechecked once: braces latest remains 3.0.3, no compatible fix. No force operation, major downgrade or rule suppression applied.

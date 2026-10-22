@@ -1,0 +1,67 @@
+.site-header {
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 20;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 94px;
+  gap: 1.5rem;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+.brand-dot {
+  color: var(--primary);
+}
+.brand-light {
+  color: var(--background);
+}
+.brand-light .brand-dot {
+  color: var(--secondary);
+}
+.desktop-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+.desktop-nav a,
+.site-footer nav a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.desktop-nav a:hover,
+.site-footer nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.mobile-navigation {
+  display: none;
+}
+
+.header-inner > a:first-child,
+.footer-top > div > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+body:has(#how:target) nav a[href="#how"],
+body:has(#preview:target) nav a[href="#preview"],
+body:has(#safety:target) nav a[href="#safety"],
+body:has(#faq:target) nav a[href="#faq"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
