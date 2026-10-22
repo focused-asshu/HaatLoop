@@ -51,7 +51,7 @@ try {
       ),
     );
   const axeResults = [];
-  for (const width of [360, 768, 1280]) {
+  for (const width of [360, 390, 768, 1280, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("http://127.0.0.1:3100/", { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);

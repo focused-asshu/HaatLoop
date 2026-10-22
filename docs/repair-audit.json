@@ -1,0 +1,35 @@
+[
+  {
+    "width": 360,
+    "undersized": []
+  },
+  {
+    "width": 390,
+    "undersized": []
+  },
+  {
+    "width": 768,
+    "undersized": []
+  },
+  {
+    "width": 1280,
+    "height": 900,
+    "lines": 2.999714047192489,
+    "eyebrowLines": 0.9995404411764707,
+    "ctaBottom": 652.8125
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "lines": 2.9994925843613935,
+    "eyebrowLines": 0.9995404411764707,
+    "ctaBottom": 666.03125
+  },
+  {
+    "width": 1920,
+    "height": 1080,
+    "lines": 2.999665985046166,
+    "eyebrowLines": 0.9995404411764707,
+    "ctaBottom": 666.546875
+  }
+]

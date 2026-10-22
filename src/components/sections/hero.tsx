@@ -5,11 +5,17 @@ export function Hero() {
     <section className="hero container" aria-labelledby="hero-heading">
       <div className="hero-copy">
         <p className="eyebrow">
-          <span className="status-dot" /> Built for local markets in Odisha ·
-          Early concept
+          <span>
+            <span className="status-dot" /> Built for local markets in Odisha
+          </span>
+          <span>· Early concept</span>
         </p>
         <h1 id="hero-heading">
-          Good food deserves <span>another chance.</span>
+          <span className="hero-line">Good food</span>{" "}
+          <span className="hero-line">deserves</span>{" "}
+          <span className="hero-line">
+            <em>another</em> chance.
+          </span>
         </h1>
         <p className="hero-description">
           An idea to connect neighbourhood vendors with nearby buyers for
@@ -17,15 +23,15 @@ export function Hero() {
         </p>
         <div className="actions">
           <a className="button" href="#how">
-            See how it works <span aria-hidden="true">↗</span>
+            See how it works <span aria-hidden="true">↓</span>
           </a>
           <a className="text-link" href="#preview">
             Explore the preview <span aria-hidden="true">→</span>
           </a>
         </div>
-        <p className="hero-note">Fresh finds. Fairer prices. Less waste.</p>
       </div>
       <MarketArt />
+      <p className="hero-note">Fresh finds. Fairer prices. Less waste.</p>
     </section>
   );
 }

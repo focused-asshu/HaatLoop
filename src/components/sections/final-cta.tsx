@@ -10,10 +10,10 @@ export function FinalCTA() {
         </h2>
         <div className="actions">
           <a className="button" href="#preview">
-            Explore the preview <span aria-hidden="true">↗</span>
+            Explore the preview <span aria-hidden="true">↑</span>
           </a>
           <a className="text-link" href="#how">
-            See how it works <span aria-hidden="true">→</span>
+            See how it works <span aria-hidden="true">↑</span>
           </a>
         </div>
       </div>

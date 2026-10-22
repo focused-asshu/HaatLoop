@@ -7,19 +7,14 @@ export function MarketArt() {
       role="img"
       aria-label="Original illustration of a market basket filled with vegetables beneath a striped awning"
     >
-      <div className="art-label" aria-hidden="true">
-        A little closer.
-        <br />A little more local.
-      </div>
       <svg className="awning" viewBox="0 0 480 110" aria-hidden="true">
-        <path
-          fill="var(--primary)"
-          d="M25 0h430l25 75q0 35-40 35t-40-35q0 35-40 35t-40-35q0 35-40 35t-40-35q0 35-40 35t-40-35q0 35-40 35T0 75Z"
-        />
-        <path
-          fill="var(--background)"
-          d="m90 0-10 75q0 35 40 35t40-35l5-75Zm150 0v75q0 35 40 35t40-35L315 0Zm150 0 10 75q0 35 40 35t40-35L455 0Z"
-        />
+        {[0, 80, 160, 240, 320, 400].map((x, index) => (
+          <path
+            key={x}
+            fill={index % 2 === 0 ? "var(--primary)" : "var(--background)"}
+            d={`M${x} 0h80v70a40 40 0 0 1-80 0Z`}
+          />
+        ))}
       </svg>
       <div className="basket-produce" aria-hidden="true">
         <Produce kind="greens" />
@@ -35,9 +30,9 @@ export function MarketArt() {
         <path d="M12 13h376v22H12Z" fill="var(--primary)" />
       </svg>
       <div className="art-ticket" aria-hidden="true">
-        Local finds.
+        Tomatoes
         <br />
-        <strong>New possibilities.</strong>
+        <strong>Demo · ₹40 / kg</strong>
       </div>
       <span className="art-caption">
         An illustration of the idea, not live stock.

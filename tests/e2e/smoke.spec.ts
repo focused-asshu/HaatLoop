@@ -12,6 +12,11 @@ test("homepage, anchors, metadata and custom 404", async ({ page }) => {
   await expect(page).toHaveTitle(site.title);
   await expect(page.getByRole("main")).toBeVisible();
   await expect(page.locator("h1")).toHaveCount(1);
+  const heroCta = page.locator('.hero a[href="#how"]');
+  await expect(heroCta).toContainText("↓");
+  await heroCta.click();
+  await expect(page.locator("#how")).toBeInViewport();
+  await expect(page.locator(".final-cta .button")).toContainText("↑");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     site.url,
@@ -104,6 +109,27 @@ test("responsive layout and reduced motion", async ({ page }) => {
       ),
       `overflow at ${width}`,
     ).toBe(true);
+    if (width >= 1024) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await page.evaluate(() => document.fonts.ready);
+      const layout = await page.locator(".hero").evaluate((hero) => {
+        const heading = hero.querySelector("h1")!;
+        const eyebrow = hero.querySelector(".eyebrow")!;
+        return {
+          lines:
+            heading.getBoundingClientRect().height /
+            parseFloat(getComputedStyle(heading).lineHeight),
+          eyebrowLines:
+            eyebrow.getBoundingClientRect().height /
+            parseFloat(getComputedStyle(eyebrow).lineHeight),
+          ctaBottom: hero.querySelector(".actions")!.getBoundingClientRect()
+            .bottom,
+        };
+      });
+      expect(layout.eyebrowLines).toBeLessThan(1.1);
+      if (width >= 1280) expect(layout.lines).toBeCloseTo(3, 1);
+      expect(layout.ctaBottom).toBeLessThan(900);
+    }
   }
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(

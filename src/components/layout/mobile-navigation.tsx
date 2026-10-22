@@ -55,7 +55,7 @@ export function MobileNavigation() {
           <a key={item.href} href={item.href} onClick={close}>
             <span aria-hidden="true">0{index + 1}</span>
             {item.label}
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">↓</span>
           </a>
         ))}
         <p>Early concept. Real orders aren’t available.</p>

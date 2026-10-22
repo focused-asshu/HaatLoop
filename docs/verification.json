@@ -1,11 +1,11 @@
 {
-  "measuredAt": "2026-10-22T09:44:29.129Z",
+  "measuredAt": "2026-10-22T10:15:37.259Z",
   "environment": "Local production build, Windows, Chromium; not deployed or field data",
   "javascript": {
     "raw": 473797,
     "gzip": 142080,
-    "inlineRaw": 21135,
-    "inlineGzip": 5097,
+    "inlineRaw": 21497,
+    "inlineGzip": 5110,
     "chunks": {
       "/_next/static/chunks/1x6obpmlu1_c2.js": {
         "raw": 5361,
@@ -19,21 +19,21 @@
         "raw": 10030,
         "gzip": 3940
       },
-      "/_next/static/chunks/2e268anpfvdoc.js": {
-        "raw": 168355,
-        "gzip": 46367
-      },
       "/_next/static/chunks/0umf92h1sb77c.js": {
         "raw": 13822,
         "gzip": 3514
+      },
+      "/_next/static/chunks/3lvyuoxrs93s1.js": {
+        "raw": 9850,
+        "gzip": 3384
       },
       "/_next/static/chunks/2n5qeheznvl4u.js": {
         "raw": 7820,
         "gzip": 3307
       },
-      "/_next/static/chunks/2942-phx7_m4k.js": {
-        "raw": 9850,
-        "gzip": 3384
+      "/_next/static/chunks/2e268anpfvdoc.js": {
+        "raw": 168355,
+        "gzip": 46367
       },
       "/_next/static/chunks/2khxl0v1q4i6n.js": {
         "raw": 229820,
@@ -41,11 +41,15 @@
       }
     }
   },
-  "inlineSvgBytes": 3067,
+  "inlineSvgBytes": 3203,
   "spriteBytes": 2697,
   "axeResults": [
     {
       "width": 360,
+      "violations": []
+    },
+    {
+      "width": 390,
       "violations": []
     },
     {
@@ -54,6 +58,10 @@
     },
     {
       "width": 1280,
+      "violations": []
+    },
+    {
+      "width": 1920,
       "violations": []
     }
   ],

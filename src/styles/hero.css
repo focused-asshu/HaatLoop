@@ -1,14 +1,21 @@
 .hero {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 3rem;
+  gap: 2rem 3rem;
   align-items: center;
-  padding-block: 4rem 5rem;
+  padding-block: 3rem;
 }
 .hero .eyebrow {
-  max-width: 42ch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.4em;
+  font-size: 0.7rem;
+  letter-spacing: 0.035em;
   margin-bottom: 1.5rem;
   color: var(--primary);
+}
+.hero .eyebrow > span {
+  white-space: nowrap;
 }
 .status-dot {
   display: inline-block;
@@ -20,9 +27,13 @@
 }
 .hero h1 {
   color: var(--primary);
+  font-size: clamp(2.8rem, 5.2vw, 4.7rem);
 }
-.hero h1 span {
+.hero-line {
   display: block;
+}
+.hero h1 em {
+  font-style: normal;
   text-decoration: underline;
   text-decoration-color: var(--secondary);
   text-underline-offset: 0.1em;
@@ -34,32 +45,30 @@
   margin: 2rem 0;
 }
 .hero-note {
-  margin-top: 2rem;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
   font-size: 0.8rem;
   color: var(--muted);
 }
 .market-art {
   position: relative;
   isolation: isolate;
-  aspect-ratio: 1 / 1.12;
+  aspect-ratio: 1 / 1.08;
   background: var(--secondary);
-  border-radius: 48% 48% 0 0;
-  margin-top: 1rem;
+  border-radius: 48% 48% 24px 24px;
+}
+.market-art::after {
+  content: "";
+  position: absolute;
+  inset: auto 8% 8%;
+  border-top: 2px solid var(--primary);
 }
 .awning {
   position: absolute;
-  width: 104%;
-  left: -2%;
-  top: 4%;
-}
-.art-label {
-  position: absolute;
-  top: 25%;
-  left: 12%;
-  font-size: 1.1rem;
-  font-weight: 600;
-  line-height: 1.2;
-  transform: rotate(-7deg);
+  width: 84%;
+  left: 8%;
+  top: 22%;
 }
 .basket-produce {
   position: absolute;
@@ -97,8 +106,8 @@
   position: absolute;
   background: var(--background);
   padding: 1rem 1.1rem;
-  right: 3%;
-  bottom: 10%;
+  right: 5%;
+  bottom: 14%;
   transform: rotate(-7deg);
   font-size: 0.85rem;
   line-height: 1.5;

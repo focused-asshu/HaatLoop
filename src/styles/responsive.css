@@ -81,7 +81,7 @@
     gap: 1.5rem;
   }
   .hero h1 {
-    font-size: clamp(3rem, 7vw, 4.5rem);
+    font-size: clamp(2.4rem, 5.2vw, 3rem);
   }
   .hero-description {
     font-size: 1rem;
@@ -89,15 +89,12 @@
   .hero .actions {
     gap: 0.75rem;
   }
-  .art-label {
-    font-size: 0.85rem;
-  }
   .art-ticket {
     font-size: 0.7rem;
     padding: 0.6rem;
   }
   .art-caption {
-    font-size: 0.55rem;
+    font-size: 0.65rem;
   }
   .story-grid {
     gap: 2rem;
@@ -146,18 +143,13 @@
     gap: 2rem;
   }
   .hero h1 {
-    font-size: clamp(3rem, 12.8vw, 4.8rem);
-    max-width: 10ch;
+    font-size: clamp(2.3rem, 11vw, 3.6rem);
   }
   .hero .eyebrow {
     font-size: 0.65rem;
-    max-width: 36ch;
   }
   .hero-description {
     margin-block: 1.5rem;
-  }
-  .hero-note {
-    margin-top: 1.2rem;
   }
   .hero .actions {
     align-items: start;
@@ -167,9 +159,6 @@
     width: min(100%, 400px);
     align-self: center;
     margin-top: 0;
-  }
-  .art-label {
-    font-size: 0.85rem;
   }
   .art-ticket {
     font-size: 0.8rem;

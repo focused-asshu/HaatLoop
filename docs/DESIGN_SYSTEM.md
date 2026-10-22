@@ -8,11 +8,15 @@ The original mark uses a 48-unit square: a trapezoidal stall canopy with scallop
 
 Seven original flat produce drawings share simple filled shapes and a few highlights. public/produce.svg is a cacheable same-origin symbol sprite; the reusable Produce component references it. Artwork is decorative when the produce name is already visible. The basket illustration has one descriptive accessible label and an explicit non-live caption.
 
+Phase 1A repair: the hero awning uses six equal 80-unit stripes in a 480 × 110 viewBox, each ending in a radius-40 semicircle. Its 84% width and 8% inset keep both edges inside the marigold arch. The whole arch remains visible, with 24px lower corners and a counter line giving the illustration a base. Removed the two illustration slogans; the ticket now reads “Tomatoes / Demo · ₹40 / kg”. This is illustrative demo content, not an offer. All seven existing produce symbols were inspected at 48px and 135px; their fills, highlights and bounds remain unchanged.
+
 ## Typography
 
 Fraunces variable normal for h1/h2 only; Instrument Sans variable normal for body, labels, controls and wordmark. Both were verified in the installed next/font/google catalog. Latin subset, display swap, fallback size adjustment and Next self-hosting; no browser requests to Google. Build-time network access is needed on a cold build. Fluid clamp sizes, balanced headings and body measures generally below 70ch. Two families only; no additional italic font file.
 
 Odia plan: add Noto Sans Oriya only when actual Odia content is introduced; scope it to that content and test shaping, line-height, fallback and localized controls. No Odia font is currently loaded.
+
+The hero alone uses clamp(2.8rem, 5.2vw, 4.7rem), with three explicit line groups: “Good food”, “deserves”, “another chance.” Tablet uses clamp(2.4rem, 5.2vw, 3rem); narrow mobile uses clamp(2.3rem, 11vw, 3.6rem). Only “another” receives one marigold underline. The compact eyebrow wraps between location and concept status on mobile and stays on one line at ≥1024px. The tagline sits in a full-width, ruled hero footer. At 1440×900 and 1920×1080, the heading, description and both CTAs end above the fold.
 
 ## Semantic tokens
 
@@ -65,6 +69,8 @@ The page composes asymmetric hero, full-width problem band, segmented journeys, 
 Minimum control/link target height is 44px. The menu is a non-modal absolute overlay: focus enters the first link, Escape returns to the trigger, navigation closes it, and tabbing outside dismisses it without trapping focus. Crossing the desktop breakpoint also closes it. Journey tabs use roving tabindex with arrows/Home/End. FAQ uses native details/summary. Filter results announce through a polite atomic status region; reset restores focus to search. Anchor target selection has a CSS active indication. Main content is reachable through a skip link.
 
 CSS hover/press transitions only; global reduced-motion disables transitions and smooth scrolling. No content depends on a reveal effect. The no-JavaScript browser check confirms the headline and all demo cards are present. There is no claim that interactive filters work without JavaScript.
+
+Anchor arrows indicate page direction: header/menu and the hero primary CTA point down; final-section CTAs point up. The hero secondary preview link retains its neutral right arrow. No on-page link uses an external-link arrow. The repair audit inspected all sections and interactive states at 360/390/768px, found no rendered control boxes smaller than 44px, and preserved the existing section layouts. This measurement covers element boxes, not browser-native subcontrols such as the search clear icon.
 
 ## Evidence and limits
 

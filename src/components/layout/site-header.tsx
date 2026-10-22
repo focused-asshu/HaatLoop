@@ -17,7 +17,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <a className="button header-cta" href="#preview">
-          Explore the preview <span aria-hidden="true">↗</span>
+          Explore the preview <span aria-hidden="true">↓</span>
         </a>
         <MobileNavigation />
       </div>
