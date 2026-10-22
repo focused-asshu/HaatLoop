@@ -1,6 +1,6 @@
 import type { ProduceKind } from "@/components/brand/produce";
 export type Category = "All produce" | "Vegetables" | "Leafy greens" | "Fruit";
-export type PreviewSort = "featured" | "pickup";
+export type PreviewSort = "featured" | "pickup" | "price-asc" | "price-desc";
 export type DemoListing = {
   id: string;
   demo: true;

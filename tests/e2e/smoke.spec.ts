@@ -12,17 +12,21 @@ test("homepage, anchors, metadata and custom 404", async ({ page }) => {
   await expect(page).toHaveTitle(site.title);
   await expect(page.getByRole("main")).toBeVisible();
   await expect(page.locator("h1")).toHaveCount(1);
-  const heroCta = page.locator('.hero a[href="#how"]');
-  await expect(heroCta).toContainText("↓");
+  const heroCta = page.locator('.hero a[href="/how-it-works"]');
+  await expect(heroCta).toContainText("→");
   await heroCta.click();
-  await expect(page.locator("#how")).toBeInViewport();
-  await expect(page.locator(".final-cta .button")).toContainText("↑");
+  await expect(page).toHaveURL("/how-it-works");
+  await page.goto("/");
+  await expect(page.locator(".final-cta .button")).toHaveAttribute(
+    "href",
+    "/marketplace",
+  );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     site.url,
   );
-  for (const id of ["how", "preview", "safety", "faq"]) {
-    await page.locator(`footer a[href="#${id}"]`).click();
+  for (const id of ["safety", "faq"]) {
+    await page.locator(`footer a[href="/#${id}"]`).click();
     await expect(page).toHaveURL(new RegExp(`#${id}$`));
     await expect(page.locator(`#${id}`)).toBeInViewport();
   }
@@ -61,8 +65,13 @@ test("keyboard menu, journey and FAQ", async ({ page }) => {
     await expect(nav).toBeHidden();
     await expect(trigger).toBeFocused();
     await trigger.click();
-    await nav.getByRole("link", { name: /The preview/ }).click();
-    await expect(nav).toBeHidden();
+    await nav.getByRole("link", { name: /Marketplace/ }).click();
+    await expect(page).toHaveURL("/marketplace");
+    await expect(page.getByRole("button", { name: /Menu/ })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    await page.goto("/");
   }
   await page.getByRole("tab", { name: "I’m a buyer" }).focus();
   await page.keyboard.press("ArrowRight");

@@ -1,4 +1,5 @@
 import { MarketArt } from "@/components/brand/market-art";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -22,12 +23,12 @@ export function Hero() {
           suitable unsold produce and a simple local pickup.
         </p>
         <div className="actions">
-          <a className="button" href="#how">
-            See how it works <span aria-hidden="true">↓</span>
-          </a>
-          <a className="text-link" href="#preview">
+          <Link prefetch={false} className="button" href="/how-it-works">
+            See how it works <span aria-hidden="true">→</span>
+          </Link>
+          <Link prefetch={false} className="text-link" href="/marketplace">
             Explore the preview <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
       </div>
       <MarketArt />

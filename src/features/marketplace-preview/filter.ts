@@ -13,10 +13,17 @@ export function filterListings(
         .toLocaleLowerCase("en-IN")
         .includes(search),
   );
-  return sort === "pickup"
-    ? matches.sort(
-        (a, b) =>
-          a.pickupEnd.localeCompare(b.pickupEnd) || a.id.localeCompare(b.id),
-      )
-    : matches;
+  if (sort === "pickup")
+    return matches.sort(
+      (a, b) =>
+        a.pickupEnd.localeCompare(b.pickupEnd) || a.id.localeCompare(b.id),
+    );
+  if (sort === "price-asc" || sort === "price-desc") {
+    const direction = sort === "price-asc" ? 1 : -1;
+    return matches.sort(
+      (a, b) =>
+        direction * (a.pricePaise - b.pricePaise) || a.id.localeCompare(b.id),
+    );
+  }
+  return matches;
 }

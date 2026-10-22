@@ -6,8 +6,8 @@ export const site = {
 };
 
 export const navigation = [
-  { href: "#how", label: "How it works" },
-  { href: "#preview", label: "The preview" },
-  { href: "#safety", label: "Our principles" },
-  { href: "#faq", label: "FAQs" },
+  { href: "/", label: "Home" },
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/for-vendors", label: "For vendors" },
+  { href: "/marketplace", label: "Marketplace" },
 ] as const;

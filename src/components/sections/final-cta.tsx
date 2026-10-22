@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function FinalCTA() {
   return (
     <section className="final-cta">
@@ -9,12 +11,12 @@ export function FinalCTA() {
           <em>closer to home.</em>
         </h2>
         <div className="actions">
-          <a className="button" href="#preview">
-            Explore the preview <span aria-hidden="true">↑</span>
-          </a>
-          <a className="text-link" href="#how">
-            See how it works <span aria-hidden="true">↑</span>
-          </a>
+          <Link prefetch={false} className="button" href="/marketplace">
+            Explore the preview <span aria-hidden="true">→</span>
+          </Link>
+          <Link prefetch={false} className="text-link" href="/how-it-works">
+            See how it works <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>

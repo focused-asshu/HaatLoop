@@ -1,25 +1,35 @@
 import { Logo } from "@/components/brand/logo";
 import { navigation } from "@/config/site";
 import { MobileNavigation } from "./mobile-navigation";
+import Link from "next/link";
 
-export function SiteHeader() {
+export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
   return (
     <header className="site-header">
       <div className="header-inner container">
-        <a href="#main" aria-label="HaatLoop home">
+        <Link prefetch={false} href="/" aria-label="HaatLoop home">
           <Logo />
-        </a>
+        </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href}>
+            <Link
+              prefetch={false}
+              key={item.href}
+              href={item.href}
+              aria-current={currentPath === item.href ? "page" : undefined}
+            >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
-        <a className="button header-cta" href="#preview">
-          Explore the preview <span aria-hidden="true">↓</span>
-        </a>
-        <MobileNavigation />
+        <Link
+          prefetch={false}
+          className="button header-cta"
+          href="/marketplace"
+        >
+          Explore the preview <span aria-hidden="true">→</span>
+        </Link>
+        <MobileNavigation currentPath={currentPath} />
       </div>
     </header>
   );

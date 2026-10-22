@@ -1,5 +1,4 @@
-import { SiteHeader } from "@/components/layout/site-header";
-import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteShell } from "@/components/layout/site-shell";
 import { Hero } from "@/components/sections/hero";
 import { Story } from "@/components/sections/story";
 import { Journeys } from "@/components/sections/journeys";
@@ -10,22 +9,15 @@ import { FinalCTA } from "@/components/sections/final-cta";
 
 export default function Home() {
   return (
-    <>
-      <a className="skip-link" href="#main">
-        Skip to content
-      </a>
-      <SiteHeader />
-      <main id="main" tabIndex={-1}>
-        <Hero />
-        <Story />
-        <Journeys />
-        <MarketplacePreview />
-        <Value />
-        <Safety />
-        <FAQ />
-        <FinalCTA />
-      </main>
-      <SiteFooter />
-    </>
+    <SiteShell currentPath="/">
+      <Hero />
+      <Story />
+      <Journeys />
+      <MarketplacePreview />
+      <Value />
+      <Safety />
+      <FAQ />
+      <FinalCTA />
+    </SiteShell>
   );
 }

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/config/site";
+import { site, navigation } from "@/config/site";
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: site.url }];
+  return navigation.map(({ href }) => ({
+    url: href === "/" ? site.url : `${site.url}${href}`,
+  }));
 }

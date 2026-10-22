@@ -1,23 +1,35 @@
 import { Logo } from "@/components/brand/logo";
 import { navigation } from "@/config/site";
+import Link from "next/link";
 
-export function SiteFooter() {
+export function SiteFooter({ currentPath = "/" }: { currentPath?: string }) {
   return (
     <footer className="site-footer">
       <div className="container">
         <div className="footer-top">
           <div>
-            <a href="#main" aria-label="HaatLoop home">
+            <Link prefetch={false} href="/" aria-label="HaatLoop home">
               <Logo light />
-            </a>
+            </Link>
             <p>Fresh finds. Fairer prices. Less waste.</p>
           </div>
           <nav aria-label="Footer navigation">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href}>
+              <Link
+                prefetch={false}
+                key={item.href}
+                href={item.href}
+                aria-current={currentPath === item.href ? "page" : undefined}
+              >
                 {item.label}
-              </a>
+              </Link>
             ))}
+            <Link prefetch={false} href="/#safety">
+              Our principles
+            </Link>
+            <Link prefetch={false} href="/#faq">
+              FAQs
+            </Link>
           </nav>
         </div>
         <div className="footer-bottom">

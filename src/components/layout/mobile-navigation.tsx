@@ -2,8 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { navigation } from "@/config/site";
+import Link from "next/link";
 
-export function MobileNavigation() {
+export function MobileNavigation({
+  currentPath = "/",
+}: {
+  currentPath?: string;
+}) {
   const [open, setOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLElement>(null);
@@ -52,11 +57,17 @@ export function MobileNavigation() {
         hidden={!open}
       >
         {navigation.map((item, index) => (
-          <a key={item.href} href={item.href} onClick={close}>
+          <Link
+            prefetch={false}
+            key={item.href}
+            href={item.href}
+            onClick={close}
+            aria-current={currentPath === item.href ? "page" : undefined}
+          >
             <span aria-hidden="true">0{index + 1}</span>
             {item.label}
-            <span aria-hidden="true">↓</span>
-          </a>
+            <span aria-hidden="true">→</span>
+          </Link>
         ))}
         <p>Early concept. Real orders aren’t available.</p>
       </nav>

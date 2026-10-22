@@ -39,15 +39,48 @@ describe("demo discovery", () => {
       expect(item.pickupEnd > item.pickupStart).toBe(true);
     }
   });
-  it("limits navigation to the four implemented section anchors", () => {
+  it("limits primary navigation to the four public routes", () => {
     expect(navigation.map((x) => x.href)).toEqual([
-      "#how",
-      "#preview",
-      "#safety",
-      "#faq",
+      "/",
+      "/how-it-works",
+      "/for-vendors",
+      "/marketplace",
     ]);
     expect(new Set(navigation.map((x) => x.label)).size).toBe(
       navigation.length,
     );
+  });
+  it("sorts illustrative prices in both directions without mutating source", () => {
+    const before = structuredClone(demoListings);
+    for (const sort of ["price-asc", "price-desc"] as const) {
+      const result = filterListings(demoListings, "", "All produce", sort);
+      const prices = result.map((item) => item.pricePaise);
+      expect(prices).toEqual(
+        [...prices].sort((a, b) => (sort === "price-asc" ? a - b : b - a)),
+      );
+      expect(
+        filterListings(demoListings, "", "Fruit", sort).map(
+          (item) => item.name,
+        ),
+      ).toEqual(["Lemons"]);
+    }
+    expect(demoListings).toEqual(before);
+  });
+  it("treats unusual search input as literal text and handles empty sources", () => {
+    for (const query of [
+      "<script>alert(1)</script>",
+      "[.*",
+      "🥬",
+      "ଟମାଟୋ",
+      "x".repeat(10000),
+    ]) {
+      expect(
+        filterListings(demoListings, query, "All produce", "price-asc"),
+      ).toEqual([]);
+    }
+    expect(
+      filterListings(demoListings, " \n\t ", "All produce", "featured"),
+    ).toHaveLength(8);
+    expect(filterListings([], "", "All produce", "pickup")).toEqual([]);
   });
 });

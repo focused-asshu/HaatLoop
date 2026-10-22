@@ -17,12 +17,12 @@ it("moves focus into the menu, closes on Escape/navigation and returns focus", a
   const trigger = screen.getByRole("button", { name: /menu/i });
   await user.click(trigger);
   expect(trigger).toHaveAttribute("aria-expanded", "true");
-  expect(screen.getByRole("link", { name: /how it works/i })).toHaveFocus();
+  expect(screen.getByRole("link", { name: /home/i })).toHaveFocus();
   await user.keyboard("{Escape}");
   expect(trigger).toHaveFocus();
   expect(trigger).toHaveAttribute("aria-expanded", "false");
   await user.click(trigger);
-  await user.click(screen.getByRole("link", { name: /the preview/i }));
+  await user.click(screen.getByRole("link", { name: /marketplace/i }));
   expect(trigger).toHaveFocus();
   expect(trigger).toHaveAttribute("aria-expanded", "false");
 });
